@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApiApplication1.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitaialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "InspectionTypes",
+                name: "InspectionType",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -20,7 +20,7 @@ namespace WebApiApplication1.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InspectionTypes", x => x.Id);
+                    table.PrimaryKey("PK_InspectionType", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -38,43 +38,43 @@ namespace WebApiApplication1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Inspections",
+                name: "Inspection",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Status = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Comments = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    Comments = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     InspectionTypeId = table.Column<int>(type: "int", nullable: false),
                     CreatedOnUtC = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Inspections", x => x.Id);
+                    table.PrimaryKey("PK_Inspection", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Inspections_InspectionTypes_InspectionTypeId",
+                        name: "FK_Inspection_InspectionType_InspectionTypeId",
                         column: x => x.InspectionTypeId,
-                        principalTable: "InspectionTypes",
+                        principalTable: "InspectionType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Inspections_InspectionTypeId",
-                table: "Inspections",
+                name: "IX_Inspection_InspectionTypeId",
+                table: "Inspection",
                 column: "InspectionTypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Inspections");
+                name: "Inspection");
 
             migrationBuilder.DropTable(
                 name: "Status");
 
             migrationBuilder.DropTable(
-                name: "InspectionTypes");
+                name: "InspectionType");
         }
     }
 }

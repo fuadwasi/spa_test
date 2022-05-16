@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\0.Data Folder\\Project\\Test Projects\\WebApiApplication1\\WebApiApplication1\\WebApiApplication1.csproj": {}
+    "C:\\00.Data\\Projects\\Personal\\SPA Test\\spa_test\\WebApiApplication1\\WebApiApplication1\\WebApiApplication1.csproj": {}
   },
   "projects": {
-    "C:\\0.Data Folder\\Project\\Test Projects\\WebApiApplication1\\WebApiApplication1\\WebApiApplication1.csproj": {
+    "C:\\00.Data\\Projects\\Personal\\SPA Test\\spa_test\\WebApiApplication1\\WebApiApplication1\\WebApiApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\0.Data Folder\\Project\\Test Projects\\WebApiApplication1\\WebApiApplication1\\WebApiApplication1.csproj",
+        "projectUniqueName": "C:\\00.Data\\Projects\\Personal\\SPA Test\\spa_test\\WebApiApplication1\\WebApiApplication1\\WebApiApplication1.csproj",
         "projectName": "WebApiApplication1",
-        "projectPath": "C:\\0.Data Folder\\Project\\Test Projects\\WebApiApplication1\\WebApiApplication1\\WebApiApplication1.csproj",
-        "packagesPath": "C:\\Users\\BS550\\.nuget\\packages\\",
-        "outputPath": "C:\\0.Data Folder\\Project\\Test Projects\\WebApiApplication1\\WebApiApplication1\\obj\\",
+        "projectPath": "C:\\00.Data\\Projects\\Personal\\SPA Test\\spa_test\\WebApiApplication1\\WebApiApplication1\\WebApiApplication1.csproj",
+        "packagesPath": "C:\\Users\\BS845\\.nuget\\packages\\",
+        "outputPath": "C:\\00.Data\\Projects\\Personal\\SPA Test\\spa_test\\WebApiApplication1\\WebApiApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\BS550\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\BS845\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -76,6 +76,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.3.0, )"
+            },
+            "linq2db": {
+              "target": "Package",
+              "version": "[3.7.0, )"
             }
           },
           "imports": [
@@ -96,7 +100,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

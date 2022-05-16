@@ -3,7 +3,6 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApiApplication1.Data;
 
@@ -11,11 +10,10 @@ using WebApiApplication1.Data;
 
 namespace WebApiApplication1.Migrations
 {
-    [DbContext(typeof(DataContext))]
-    [Migration("20220420200050_InitialCreate")]
-    partial class InitialCreate
+    [DbContext(typeof(WebObjectContext))]
+    partial class WebObjectContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,8 +32,8 @@ namespace WebApiApplication1.Migrations
 
                     b.Property<string>("Comments")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<DateTime>("CreatedOnUtC")
                         .HasColumnType("datetime2");
@@ -45,14 +43,14 @@ namespace WebApiApplication1.Migrations
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("InspectionTypeId");
 
-                    b.ToTable("Inspections");
+                    b.ToTable("Inspection");
                 });
 
             modelBuilder.Entity("WebApiApplication1.Domains.InspectionType", b =>
@@ -73,7 +71,7 @@ namespace WebApiApplication1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("InspectionTypes");
+                    b.ToTable("InspectionType");
                 });
 
             modelBuilder.Entity("WebApiApplication1.Domains.Status", b =>
