@@ -8,7 +8,7 @@ namespace WebApiApplication1.Services
         Inspection GetById(int id);
 
         IPagedList<Inspection> SearchInspection(
-            string statusString,
+            string statusString = "",
             int inspectionTypeId = 0, 
             int pageIndex = 0, 
             int pageSize = int.MaxValue

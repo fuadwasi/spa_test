@@ -8,40 +8,42 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApiApplication1.Data;
 using WebApiApplication1.Domains;
+using WebApiApplication1.Services;
 
 namespace WebApiApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class InspectionsController : ControllerBase
+    public class InspectionsController : Controller
     {
-        //private readonly DataContext _context;
+        private readonly IInspectionService _inspectionService;
 
-        //public InspectionsController(DataContext context)
-        //{
-        //    _context = context;
-        //}
+        public InspectionsController(IInspectionService inspectionService)
+        {
+            this._inspectionService = inspectionService;
+        }
 
-        //// GET: api/Inspections
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<Inspection>>> GetInspections()
-        //{
-        //    return await _context.Inspections.ToListAsync();
-        //}
+        // GET: api/Inspections
+        [HttpGet]
+        public async Task<IActionResult> GetInspections()
+        {
+            var inspectionList = _inspectionService.SearchInspection();
+            return Json(inspectionList);
+        }
 
-        //// GET: api/Inspections/5
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<Inspection>> GetInspection(int id)
-        //{
-        //    var inspection = await _context.Inspections.FindAsync(id);
+        // GET: api/Inspections/5
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetInspection(int id)
+        {
+            var inspection = _inspectionService.GetById(id);
 
-        //    if (inspection == null)
-        //    {
-        //        return NotFound();
-        //    }
+            if (inspection == null)
+            {
+                return NotFound();
+            }
 
-        //    return inspection;
-        //}
+            return Json(inspection);
+        }
 
         //// PUT: api/Inspections/5
         //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -74,36 +76,41 @@ namespace WebApiApplication1.Controllers
         //    return NoContent();
         //}
 
-        //// POST: api/Inspections
-        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPost]
-        //public async Task<ActionResult<Inspection>> PostInspection(Inspection inspection)
-        //{
-        //    _context.Inspections.Add(inspection);
-        //    await _context.SaveChangesAsync();
+        // POST: api/Inspections
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<Inspection>> PostInspection(Inspection inspection)
+        {
+            //_context.Inspections.Add(inspection);
+            //await _context.SaveChangesAsync();
 
-        //    return CreatedAtAction("GetInspection", new { id = inspection.Id }, inspection);
-        //}
+            //return CreatedAtAction("GetInspection", new { id = inspection.Id }, inspection);
+            if(inspection == null)
+                return NotFound();
+            _inspectionService.InsertInspection(inspection);
 
-        //// DELETE: api/Inspections/5
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteInspection(int id)
-        //{
-        //    var inspection = await _context.Inspections.FindAsync(id);
-        //    if (inspection == null)
-        //    {
-        //        return NotFound();
-        //    }
+            return Json(inspection);
+        }
 
-        //    _context.Inspections.Remove(inspection);
-        //    await _context.SaveChangesAsync();
+        // DELETE: api/Inspections/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteInspection(int id)
+        {
+            var inspection = _inspectionService.GetById(id);
+            if (inspection == null)
+            {
+                return NotFound();
+            }
 
-        //    return NoContent();
-        //}
+            _inspectionService.DeleteInspection(inspection);
 
-        //private bool InspectionExists(int id)
-        //{
-        //    return _context.Inspections.Any(e => e.Id == id);
-        //}
+            return NoContent();
+        }
+
+        private bool InspectionExists(int id)
+        {
+            var inspection = _inspectionService.GetById(id);
+            return inspection != null;
+        }
     }
 }

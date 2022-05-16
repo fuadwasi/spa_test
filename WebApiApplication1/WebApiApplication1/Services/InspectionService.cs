@@ -45,7 +45,7 @@ namespace WebApiApplication1.Services
             _inspectionRepository.Insert(inspection);
         }
 
-        public IPagedList<Inspection> SearchInspection(string statusString, 
+        public IPagedList<Inspection> SearchInspection(string statusString = "", 
             int inspectionTypeId = 0, int pageIndex = 0, int pageSize = int.MaxValue)
         {
             var query = _inspectionRepository.Table;
